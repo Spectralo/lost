@@ -14,9 +14,13 @@ config/name="Lost"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[aseprite_importers]
+
+aseprite_executable_path="/usr/bin/aseprite"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg")
 
 [rendering]
 
