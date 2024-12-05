@@ -7,11 +7,11 @@ size = Vector2(653, 20)
 
 [node name="playground" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_phhh4")]
-position = Vector2(548, 257)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(479, 372)
 shape = SubResource("RectangleShape2D_12tr7")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_phhh4")]
+position = Vector2(440, 202)
