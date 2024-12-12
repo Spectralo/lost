@@ -1,17 +1,47 @@
-[gd_scene load_steps=3 format=3 uid="uid://f6y03uh1knou"]
+[gd_scene load_steps=4 format=3 uid="uid://f6y03uh1knou"]
 
 [ext_resource type="PackedScene" uid="uid://ctgnncw4346vr" path="res://scenes/player.tscn" id="1_phhh4"]
+[ext_resource type="PackedScene" uid="uid://dvyvtqul06ojp" path="res://scenes/cloud.tscn" id="2_ryp0o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12tr7"]
-size = Vector2(653, 20)
+size = Vector2(2891, 56)
 
 [node name="playground" type="Node2D"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(479, 372)
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer2"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -806.0
+offset_top = -482.0
+offset_right = 1380.0
+offset_bottom = 1197.0
+grow_vertical = 2
+color = Color(0.0509804, 0.168627, 0.270588, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="ParallaxBackground/ParallaxLayer2"]
+offset_left = 163.0
+offset_top = 361.0
+offset_right = 679.0
+offset_bottom = 607.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ParallaxBackground/ParallaxLayer2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer2/StaticBody2D"]
+position = Vector2(-94.5, 391)
 shape = SubResource("RectangleShape2D_12tr7")
 
+[node name="clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.25, 0.25)
+
+[node name="cloud" parent="ParallaxBackground/clouds" instance=ExtResource("2_ryp0o")]
+position = Vector2(-56, 130)
+
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_phhh4")]
-position = Vector2(440, 202)
+position = Vector2(464, 195)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(0, -11)

@@ -1,0 +1,194 @@
+[gd_scene load_steps=18 format=4 uid="uid://b3wr0cxjl6yq7"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_2kuvf"]
+[ext_resource type="Theme" uid="uid://b0u4gtwv3a7be" path="res://assets/theme/text.tres" id="2_813tg"]
+[ext_resource type="Theme" uid="uid://dl1c4tyiabych" path="res://assets/theme/textnormal.tres" id="3_r6yi2"]
+[ext_resource type="Texture2D" uid="uid://cj5ugco5pmsul" path="res://assets/spritesheet.png" id="4_6ieu5"]
+[ext_resource type="PackedScene" uid="uid://bf05p6y227a4y" path="res://scenes/portal.tscn" id="5_qjw4c"]
+
+[sub_resource type="Animation" id="Animation_4oycg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anim:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w8h37"]
+resource_name = "entering"
+length = 1.868
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anim:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.23333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gys2n"]
+_data = {
+"RESET": SubResource("Animation_4oycg"),
+"entering": SubResource("Animation_w8h37")
+}
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_7bj8v"]
+tile_data = PackedInt32Array(0, 327680, 6, 65536, 327680, 7, 1, 393216, 6, 65537, 393216, 7, 2, 458752, 6, 65538, 458752, 7)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_ukwvd"]
+tile_data = PackedInt32Array(0, 196608, 2, 65536, 196608, 3)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_13hm7"]
+tile_data = PackedInt32Array(0, 393216, 0, 65536, 393216, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_bsm84"]
+tile_data = PackedInt32Array(0, 458752, 0, 65536, 458752, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_qioxx"]
+tile_data = PackedInt32Array(0, 196608, 0, 65536, 196608, 1, 1, 262144, 0, 65537, 262144, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_l2yu2"]
+tile_data = PackedInt32Array(0, 327680, 0, 65536, 327680, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dara1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ix68l"]
+texture = ExtResource("4_6ieu5")
+0:0/0 = 0
+1:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:6/0 = 0
+0:7/0 = 0
+0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.09026, -8, 8, -8, 8, 0.595275, 4.75, -3.5625)
+1:7/0 = 0
+1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 1.375, -8, 1.4375)
+2:7/0 = 0
+2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 1.0625, -8, 0.875)
+3:7/0 = 0
+3:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -1.375, -8, -1.8125, -2.25, -8, -0.25)
+3:2/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+7:7/0 = 0
+6:7/0 = 0
+5:7/0 = 0
+3:3/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xhelr"]
+uv_clipping = true
+physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_dara1")
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "ground 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+terrain_set_0/terrain_1/name = "Terrain 1"
+terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_ix68l")
+pattern_0 = SubResource("TileMapPattern_7bj8v")
+pattern_1 = SubResource("TileMapPattern_ukwvd")
+pattern_2 = SubResource("TileMapPattern_13hm7")
+pattern_3 = SubResource("TileMapPattern_bsm84")
+pattern_4 = SubResource("TileMapPattern_qioxx")
+pattern_5 = SubResource("TileMapPattern_l2yu2")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2kuvf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0431373, 0.0941176, 0.211765, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 38.0
+offset_top = 23.0
+offset_right = 144.0
+offset_bottom = 95.0
+theme = ExtResource("2_813tg")
+text = "Lost"
+
+[node name="Label2" type="Label" parent="ColorRect"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 225.0
+offset_top = 77.0
+offset_right = 300.0
+offset_bottom = 132.0
+theme = ExtResource("3_r6yi2")
+text = "v0.1
+"
+
+[node name="Anim" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gys2n")
+}
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAJAAoAAAAAAAQAAAAKAAoAAAAAAAQAAAALAAoAAAAAAAQAAAAMAAoAAAAAAAQAAAAJAAkAAAAFAAMAAAAJAAsAAAABAAUAAAAKAAsAAAABAAUAAAALAAsAAAABAAUAAAAMAAsAAAABAAUAAAANAAsAAAABAAUAAAAOAAsAAAABAAUAAAAPAAsAAAABAAUAAAAQAAsAAAABAAUAAAARAAsAAAABAAUAAAASAAsAAAABAAUAAAATAAsAAAABAAUAAAAUAAsAAAABAAUAAAAUAAwAAAABAAUAAAATAAwAAAABAAUAAAASAAwAAAABAAUAAAARAAwAAAABAAUAAAAQAAwAAAABAAUAAAAPAAwAAAABAAUAAAAOAAwAAAABAAUAAAANAAwAAAABAAUAAAAMAAwAAAABAAUAAAALAAwAAAABAAUAAAAKAAwAAAABAAUAAAAJAAwAAAABAAUAAAAIAAwAAAABAAUAAAAHAAwAAAABAAUAAAAGAAwAAAABAAUAAAAFAAwAAAABAAUAAAAEAAwAAAABAAUAAAADAAwAAAABAAUAAAACAAwAAAABAAUAAAABAAwAAAABAAUAAAAAAAwAAAABAAUAAAD//wsAAAABAAUAAAD//wwAAAABAAUAAAAAAAsAAAABAAUAAAABAAsAAAABAAUAAAACAAsAAAABAAUAAAADAAsAAAABAAUAAAAEAAsAAAABAAUAAAAFAAsAAAABAAUAAAAGAAsAAAABAAUAAAAHAAsAAAABAAUAAAAIAAsAAAABAAUAAAAIAAoAAAAAAAQAAAAHAAoAAAAAAAQAAAAGAAoAAAABAAQAAAAFAAoAAAAAAAQAAAAEAAoAAAABAAQAAAADAAoAAAAAAAQAAAACAAoAAAABAAQAAAABAAoAAAAAAAQAAAAAAAoAAAABAAQAAAD//woAAAAAAAQAAAANAAoAAAABAAQAAAAOAAoAAAAAAAQAAAAPAAoAAAAAAAQAAAAQAAoAAAABAAQAAAARAAoAAAAAAAQAAAASAAoAAAAAAAQAAAATAAoAAAABAAQAAAAUAAoAAAAAAAQAAAAIAAkAAAAAAAMAAAAHAAkAAAABAAMAAAAEAAkAAAABAAMAAAAAAAkAAAABAAMAAAALAAkAAAAAAAEAAAAKAAkAAAAAAAMAAAASAAkAAAABAAEAAAACAAgAAAAHAAAAAAACAAkAAAAHAAEAAAAQAAEAAAAFAAYAAAAQAAIAAAAFAAcAAAARAAEAAAAGAAYAAAARAAIAAAAGAAcAAAASAAEAAAAHAAYAAAASAAIAAAAHAAcAAAABAAQAAAAFAAYAAAABAAUAAAAFAAcAAAACAAQAAAAGAAYAAAACAAUAAAAGAAcAAAADAAQAAAAHAAYAAAADAAUAAAAHAAcAAAADAAkAAAAFAAIAAAABAAkAAAABAAEAAAAPAAkAAAACAAEAAAATAAkAAAACAAEAAAAHAAcAAAABAAcAAAAIAAYAAAAAAAEAAAAIAAcAAAACAAcAAAAJAAYAAAAHAAQAAAAJAAcAAAABAAcAAAAKAAYAAAAGAAEAAAAKAAcAAAACAAcAAAALAAcAAAADAAcAAAAFAAcAAAAAAAcAAAAGAAUAAAADAAAAAAAGAAYAAAADAAEAAAAGAAcAAAABAAcAAAAHAAUAAAAEAAAAAAAHAAYAAAAEAAEAAAAKAAUAAAAGAAAAAAA=")
+tile_set = SubResource("TileSet_xhelr")
+
+[node name="portal" parent="." instance=ExtResource("5_qjw4c")]
+position = Vector2(447, 295)

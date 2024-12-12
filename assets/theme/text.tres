@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b0u4gtwv3a7be"]
+
+[ext_resource type="FontFile" uid="uid://t7lgc7m5bmfb" path="res://assets/font/munro.ttf" id="1_34fny"]
+[ext_resource type="FontFile" uid="uid://b2at13bdkou84" path="res://assets/font/mx57.ttf" id="1_vjo1h"]
+
+[resource]
+default_font = ExtResource("1_34fny")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/font_sizes/font_size = 128
+Label/fonts/font = ExtResource("1_vjo1h")

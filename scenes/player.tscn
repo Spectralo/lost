@@ -4,8 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://bmpg3b37fei24" path="res://assets/player.tres" id="2_xdrm0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umhjd"]
-radius = 17.0
-height = 64.0
+radius = 18.0
+height = 48.0
 
 [sub_resource type="Animation" id="Animation_5ly6o"]
 length = 0.001
@@ -256,6 +256,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 script = ExtResource("1_3iaje")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
 shape = SubResource("CapsuleShape2D_umhjd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
