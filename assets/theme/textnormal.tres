@@ -3,5 +3,5 @@
 [ext_resource type="FontFile" uid="uid://b2at13bdkou84" path="res://assets/font/mx57.ttf" id="1_fbvyr"]
 
 [resource]
-Label/font_sizes/font_size = 48
+Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("1_fbvyr")

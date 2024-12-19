@@ -1,15 +1,13 @@
 extends Node2D
 
+const PATH_BEGGINING = "res://scenes/levels/level_"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite2D.play("swirl")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _on_area_2d_body_entered(body):
-	$AnimatedSprite2D.play("disapear")
+	var levelnumber =  int(get_tree().filename)
+	print(levelnumber)
+	var nextscene = PATH_BEGGINING+str(levelnumber)+".tscn"
+	Transitioner.fadeTransition(load(nextscene))

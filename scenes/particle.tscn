@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://c24okss1tp1ru"]
+
+[ext_resource type="Texture2D" uid="uid://d1hxvpidj31db" path="res://assets/leave..png" id="1_syltf"]
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+texture_filter = 1
+scale = Vector2(4, 4)
+amount = 1
+speed_scale = 0.2
+texture = ExtResource("1_syltf")
+spread = 38.45
+gravity = Vector2(-200, 980)
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+angle_min = -200.0
+angle_max = 200.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+hue_variation_max = 1.0

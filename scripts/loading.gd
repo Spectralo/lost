@@ -9,18 +9,10 @@ func _ready() -> void:
 	# Then play the anim
 	$AnimationPlayer.play("logo")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "exit":
-		queue_free()
-	else:
-		$AnimationPlayer.play("exit")
-		
+	var main_menu = load("res://scenes/main_menu.tscn")
+	Transitioner.fadeTransition(main_menu)
+
 func playSound():
 	var randomPitch = randi() % 100 + 50
 	var randomPitchFloat : float = float(randomPitch) / 100.0

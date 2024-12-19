@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6w60pyg4o1te"]
+
+[ext_resource type="Texture2D" uid="uid://cj5ugco5pmsul" path="res://assets/spritesheet.png" id="1_2ndr4"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_lgw72"]
+tile_data = PackedInt32Array(0, 0, 4, 1, 65536, 4)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_nmb6k"]
+tile_data = PackedInt32Array(0, 393216, 0, 65536, 393216, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s0c7r"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_up8fq"]
+texture = ExtResource("1_2ndr4")
+0:0/0 = 0
+1:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+3:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+3:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.34464, -8, 8, -8, 8, 1.06533, 5.0789, -3.02257)
+1:7/0 = 0
+1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 1.80858, -8, 1.06533)
+2:7/0 = 0
+2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 1.31308, -8, 1.93246)
+3:7/0 = 0
+3:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -1.85814, -8, -1.98201, -2.03157, -8, 0.322073)
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_287wf"]
+physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_s0c7r")
+sources/0 = SubResource("TileSetAtlasSource_up8fq")
+pattern_0 = SubResource("TileMapPattern_lgw72")
+pattern_1 = SubResource("TileMapPattern_nmb6k")
+
+[node name="EnvironmentTileMap" type="TileMapLayer"]
+scale = Vector2(4, 4)
+tile_set = SubResource("TileSet_287wf")

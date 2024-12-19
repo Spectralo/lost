@@ -1,10 +1,48 @@
-[gd_scene load_steps=18 format=4 uid="uid://b3wr0cxjl6yq7"]
+[gd_scene load_steps=26 format=4 uid="uid://b3wr0cxjl6yq7"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_2kuvf"]
-[ext_resource type="Theme" uid="uid://b0u4gtwv3a7be" path="res://assets/theme/text.tres" id="2_813tg"]
-[ext_resource type="Theme" uid="uid://dl1c4tyiabych" path="res://assets/theme/textnormal.tres" id="3_r6yi2"]
+[ext_resource type="Texture2D" uid="uid://byoggsllkga1c" path="res://scenes/select.png" id="2_4xdmx"]
 [ext_resource type="Texture2D" uid="uid://cj5ugco5pmsul" path="res://assets/spritesheet.png" id="4_6ieu5"]
-[ext_resource type="PackedScene" uid="uid://bf05p6y227a4y" path="res://scenes/portal.tscn" id="5_qjw4c"]
+[ext_resource type="Texture2D" uid="uid://c6jc4oulw5y4q" path="res://scenes/settings.png" id="4_wdf5d"]
+[ext_resource type="Texture2D" uid="uid://p3v4yqyld0k0" path="res://scenes/button.png" id="5_5taxw"]
+[ext_resource type="Theme" uid="uid://dl1c4tyiabych" path="res://assets/theme/textnormal.tres" id="5_xmru2"]
+
+[sub_resource type="GDScript" id="GDScript_no326"]
+script/source = "extends Control
+
+var button_index = 0
+var animating = false
+var upDict = [\"\",\"quit_to_play\",\"settings_to_quit\"]
+var downDict = [\"play_to_quit\",\"quit_to_settings\",\"\"]
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed(\"down\") and not animating:
+		if button_index != 2:
+			$AnimationPlayer.play(downDict[button_index])
+			button_index += 1
+			animating = true
+	elif Input.is_action_just_pressed(\"up\") and not animating:
+		if button_index != 0:
+			$AnimationPlayer.play(upDict[button_index])
+			button_index -= 1
+			animating = true
+
+	# Handle clicking the buttons
+	if Input.is_action_just_pressed(\"ui_accept\"):
+		if button_index == 0:
+			play()
+		elif button_index == 1:
+			get_tree().quit()
+		else:
+			pass
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	animating = false
+
+func play():
+	$AnimationPlayer.play(\"playing\")
+	await $AnimationPlayer.animation_finished
+	Transitioner.fadeTransition(load(\"res://scenes/levels/level_\"+str(Global.currentLevel)+\".tscn\"))
+"
 
 [sub_resource type="Animation" id="Animation_4oycg"]
 length = 0.001
@@ -19,6 +57,70 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/SelectorFollower:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.635]
+}
+
+[sub_resource type="Animation" id="Animation_4c2hm"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Buttons/Settings:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Buttons/Quit:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Path2D/SelectorFollower/Selector:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Buttons/Play:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_w8h37"]
@@ -37,10 +139,96 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_qlg20"]
+resource_name = "play_to_quit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/SelectorFollower:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.635, 0.76]
+}
+
+[sub_resource type="Animation" id="Animation_k7kva"]
+resource_name = "playing"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/SelectorFollower:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.635, 0.0731]
+}
+
+[sub_resource type="Animation" id="Animation_bs3gi"]
+resource_name = "quit_to_play"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/SelectorFollower:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.76, 0.635]
+}
+
+[sub_resource type="Animation" id="Animation_5ryau"]
+resource_name = "quit_to_settings"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/SelectorFollower:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.76, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_8t1mu"]
+resource_name = "settings_to_quit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/SelectorFollower:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [1.0, 0.76]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gys2n"]
 _data = {
 "RESET": SubResource("Animation_4oycg"),
-"entering": SubResource("Animation_w8h37")
+"default": SubResource("Animation_4c2hm"),
+"entering": SubResource("Animation_w8h37"),
+"play_to_quit": SubResource("Animation_qlg20"),
+"playing": SubResource("Animation_k7kva"),
+"quit_to_play": SubResource("Animation_bs3gi"),
+"quit_to_settings": SubResource("Animation_5ryau"),
+"settings_to_quit": SubResource("Animation_8t1mu")
 }
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_7bj8v"]
@@ -130,6 +318,12 @@ pattern_3 = SubResource("TileMapPattern_bsm84")
 pattern_4 = SubResource("TileMapPattern_qioxx")
 pattern_5 = SubResource("TileMapPattern_l2yu2")
 
+[sub_resource type="Curve2D" id="Curve2D_66k1x"]
+_data = {
+"points": PackedVector2Array(192.871, 20.5729, -192.871, -20.5729, 707, 132, -0.495908, -78.2323, 0.495908, 78.2323, 476, 185, -1.01637, -14.7374, 1.01637, 14.7374, 477, 293, -10.1637, -3.04912, 10.1637, 3.04912, 498, 322, 0, 0, 0, 0, 541, 320)
+}
+point_count = 5
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -137,7 +331,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2kuvf")
+script = SubResource("GDScript_no326")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -147,27 +341,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0431373, 0.0941176, 0.211765, 1)
-
-[node name="Label" type="Label" parent="ColorRect"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 38.0
-offset_top = 23.0
-offset_right = 144.0
-offset_bottom = 95.0
-theme = ExtResource("2_813tg")
-text = "Lost"
-
-[node name="Label2" type="Label" parent="ColorRect"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 225.0
-offset_top = 77.0
-offset_right = 300.0
-offset_bottom = 132.0
-theme = ExtResource("3_r6yi2")
-text = "v0.1
-"
 
 [node name="Anim" type="ColorRect" parent="."]
 visible = false
@@ -185,10 +358,146 @@ libraries = {
 }
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+visible = false
 texture_filter = 1
-scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAAJAAoAAAAAAAQAAAAKAAoAAAAAAAQAAAALAAoAAAAAAAQAAAAMAAoAAAAAAAQAAAAJAAkAAAAFAAMAAAAJAAsAAAABAAUAAAAKAAsAAAABAAUAAAALAAsAAAABAAUAAAAMAAsAAAABAAUAAAANAAsAAAABAAUAAAAOAAsAAAABAAUAAAAPAAsAAAABAAUAAAAQAAsAAAABAAUAAAARAAsAAAABAAUAAAASAAsAAAABAAUAAAATAAsAAAABAAUAAAAUAAsAAAABAAUAAAAUAAwAAAABAAUAAAATAAwAAAABAAUAAAASAAwAAAABAAUAAAARAAwAAAABAAUAAAAQAAwAAAABAAUAAAAPAAwAAAABAAUAAAAOAAwAAAABAAUAAAANAAwAAAABAAUAAAAMAAwAAAABAAUAAAALAAwAAAABAAUAAAAKAAwAAAABAAUAAAAJAAwAAAABAAUAAAAIAAwAAAABAAUAAAAHAAwAAAABAAUAAAAGAAwAAAABAAUAAAAFAAwAAAABAAUAAAAEAAwAAAABAAUAAAADAAwAAAABAAUAAAACAAwAAAABAAUAAAABAAwAAAABAAUAAAAAAAwAAAABAAUAAAD//wsAAAABAAUAAAD//wwAAAABAAUAAAAAAAsAAAABAAUAAAABAAsAAAABAAUAAAACAAsAAAABAAUAAAADAAsAAAABAAUAAAAEAAsAAAABAAUAAAAFAAsAAAABAAUAAAAGAAsAAAABAAUAAAAHAAsAAAABAAUAAAAIAAsAAAABAAUAAAAIAAoAAAAAAAQAAAAHAAoAAAAAAAQAAAAGAAoAAAABAAQAAAAFAAoAAAAAAAQAAAAEAAoAAAABAAQAAAADAAoAAAAAAAQAAAACAAoAAAABAAQAAAABAAoAAAAAAAQAAAAAAAoAAAABAAQAAAD//woAAAAAAAQAAAANAAoAAAABAAQAAAAOAAoAAAAAAAQAAAAPAAoAAAAAAAQAAAAQAAoAAAABAAQAAAARAAoAAAAAAAQAAAASAAoAAAAAAAQAAAATAAoAAAABAAQAAAAUAAoAAAAAAAQAAAAIAAkAAAAAAAMAAAAHAAkAAAABAAMAAAAEAAkAAAABAAMAAAAAAAkAAAABAAMAAAALAAkAAAAAAAEAAAAKAAkAAAAAAAMAAAASAAkAAAABAAEAAAACAAgAAAAHAAAAAAACAAkAAAAHAAEAAAAQAAEAAAAFAAYAAAAQAAIAAAAFAAcAAAARAAEAAAAGAAYAAAARAAIAAAAGAAcAAAASAAEAAAAHAAYAAAASAAIAAAAHAAcAAAABAAQAAAAFAAYAAAABAAUAAAAFAAcAAAACAAQAAAAGAAYAAAACAAUAAAAGAAcAAAADAAQAAAAHAAYAAAADAAUAAAAHAAcAAAADAAkAAAAFAAIAAAABAAkAAAABAAEAAAAPAAkAAAACAAEAAAATAAkAAAACAAEAAAAHAAcAAAABAAcAAAAIAAYAAAAAAAEAAAAIAAcAAAACAAcAAAAJAAYAAAAHAAQAAAAJAAcAAAABAAcAAAAKAAYAAAAGAAEAAAAKAAcAAAACAAcAAAALAAcAAAADAAcAAAAFAAcAAAAAAAcAAAAGAAUAAAADAAAAAAAGAAYAAAADAAEAAAAGAAcAAAABAAcAAAAHAAUAAAAEAAAAAAAHAAYAAAAEAAEAAAAKAAUAAAAGAAAAAAA=")
+position = Vector2(0, -40)
+scale = Vector2(6, 6)
+tile_map_data = PackedByteArray("AAAEAAIAAAADAAAAAAAEAAMAAAADAAEAAAAFAAIAAAAEAAAAAAAFAAMAAAAEAAEAAAAEAAQAAAAAAAQAAAAFAAQAAAAAAAQAAAAGAAQAAAAAAAQAAAADAAQAAAAAAAQAAAACAAQAAAAAAAQAAAABAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAIAAAAHAAAAAAAAAAMAAAAHAAEAAAABAAMAAAAGAAMAAAA=")
 tile_set = SubResource("TileSet_xhelr")
 
-[node name="portal" parent="." instance=ExtResource("5_qjw4c")]
-position = Vector2(447, 295)
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(14, 1)
+curve = SubResource("Curve2D_66k1x")
+
+[node name="SelectorFollower" type="PathFollow2D" parent="Path2D"]
+position = Vector2(476.112, 204.788)
+progress = 294.677
+rotates = false
+
+[node name="Selector" type="Sprite2D" parent="Path2D/SelectorFollower"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_4xdmx")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://assets/select.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "219dc3a800f16f3cd5608c65d844acdb"
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Play" type="Sprite2D" parent="Buttons"]
+texture_filter = 1
+position = Vector2(-72, 208)
+scale = Vector2(4, 4)
+texture = ExtResource("5_5taxw")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://assets/button.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "3674a20d908d4eb1294d988276d51ade"
+
+[node name="Label" type="Label" parent="Buttons/Play"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.6
+offset_top = -17.2
+offset_right = 14.4
+offset_bottom = 5.8
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_xmru2")
+text = "Play"
+
+[node name="Quit" type="Sprite2D" parent="Buttons"]
+texture_filter = 1
+position = Vector2(-72, 264)
+scale = Vector2(4, 4)
+texture = ExtResource("5_5taxw")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://assets/button.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "3674a20d908d4eb1294d988276d51ade"
+
+[node name="Label" type="Label" parent="Buttons/Quit"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.6
+offset_top = -16.0
+offset_right = 14.4
+offset_bottom = 7.00001
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_xmru2")
+text = "Quit"
+
+[node name="Settings" type="Sprite2D" parent="Buttons"]
+texture_filter = 1
+position = Vector2(-40, 320)
+scale = Vector2(4, 4)
+texture = ExtResource("4_wdf5d")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://assets/settings.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "b37f1ccc97aea3d04dce62f794170f74"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
