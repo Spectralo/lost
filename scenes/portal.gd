@@ -7,7 +7,8 @@ func _ready():
 	$AnimatedSprite2D.play("swirl")
 
 func _on_area_2d_body_entered(body):
-	var levelnumber =  int(get_tree().filename)
+	var levelnumber =  Global.currentLevel
 	print(levelnumber)
-	var nextscene = PATH_BEGGINING+str(levelnumber)+".tscn"
-	Transitioner.fadeTransition(load(nextscene))
+	var nextscene = PATH_BEGGINING+str(levelnumber+1)+".tscn"
+	Global.currentLevel += 1
+	Transitioner.portalTransition(load(nextscene))

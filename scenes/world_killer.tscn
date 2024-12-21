@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dohxsq8hulvfx"]
+
+[ext_resource type="Script" path="res://scenes/world_killer.gd" id="1_530ub"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otqmv"]
+size = Vector2(457, 73)
+
+[node name="WorldKiller" type="Node2D"]
+script = ExtResource("1_530ub")
+
+[node name="KillerArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillerArea"]
+position = Vector2(218.5, 26.5)
+shape = SubResource("RectangleShape2D_otqmv")
+
+[connection signal="body_entered" from="KillerArea" to="." method="_on_killer_area_body_entered"]

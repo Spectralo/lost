@@ -62,9 +62,9 @@ _data = {
 [node name="SignDialog" type="Node2D"]
 script = ExtResource("1_r0xkj")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="SignArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SignArea"]
 shape = SubResource("CircleShape2D_iydet")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -92,3 +92,6 @@ metadata/_aseprite_wizard_source_file_hash_ = "727a34015c0aa0aff26c332ea2d76c4d"
 libraries = {
 "": SubResource("AnimationLibrary_ikxc2")
 }
+
+[connection signal="body_entered" from="SignArea" to="." method="_on_sign_area_body_entered"]
+[connection signal="body_exited" from="SignArea" to="." method="_on_sign_area_body_exited"]

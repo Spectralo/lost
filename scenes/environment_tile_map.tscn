@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://by4p15a1g5xqb"]
+[gd_scene load_steps=8 format=3 uid="uid://by4p15a1g5xqb"]
 
 [ext_resource type="Texture2D" uid="uid://cj5ugco5pmsul" path="res://assets/spritesheet.png" id="1_2ndr4"]
 
@@ -7,6 +7,9 @@ tile_data = PackedInt32Array(0, 0, 4, 1, 65536, 4)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_nmb6k"]
 tile_data = PackedInt32Array(0, 393216, 0, 65536, 393216, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_iu1ql"]
+tile_data = PackedInt32Array(0, 131072, 4, 1, 65536, 4)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s0c7r"]
 
@@ -36,12 +39,12 @@ texture = ExtResource("1_2ndr4")
 6:3/0 = 0
 7:3/0 = 0
 0:4/0 = 0
-0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.88909, -8, 8, -8, 8, 8, 2.5625, 8)
 1:4/0 = 0
 1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:4/0 = 0
 0:5/0 = 0
-0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(2.91682, -8, 8, -8, 8, 8, 3.00521, 8)
 1:5/0 = 0
 1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:6/0 = 0
@@ -59,9 +62,16 @@ texture = ExtResource("1_2ndr4")
 6:7/0 = 0
 7:7/0 = 0
 2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:5/0 = 0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:2/0 = 0
 7:2/0 = 0
+3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -3, -4.625, -2.8125, 8.8125, -8, 8)
+3:5/0 = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -3.27037, -8, -2.82843, 8.75045, -8, 8)
+2:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_287wf"]
 physics_layer_0/collision_layer = 1
@@ -69,7 +79,9 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_s0c7r")
 sources/0 = SubResource("TileSetAtlasSource_up8fq")
 pattern_0 = SubResource("TileMapPattern_lgw72")
 pattern_1 = SubResource("TileMapPattern_nmb6k")
+pattern_2 = SubResource("TileMapPattern_iu1ql")
 
 [node name="EnvironmentTileMap" type="TileMapLayer"]
+texture_filter = 2
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_287wf")

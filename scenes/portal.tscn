@@ -194,13 +194,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbbse"]
-radius = 4.0
+radius = 11.0
+height = 84.0
 
 [node name="portal" type="Node2D"]
 script = ExtResource("1_utudj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_c45qb")
 animation = &"swirl"
 metadata/_aseprite_wizard_interface_config_ = {

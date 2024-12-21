@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=3 uid="uid://cthw748qcmfa1"]
+
+[ext_resource type="Script" path="res://scenes/checkpoint.gd" id="1_2tnqm"]
+[ext_resource type="Texture2D" uid="uid://b4sy6cck1jkp7" path="res://scenes/flag.png" id="2_1m3yo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n10sr"]
+radius = 25.0
+height = 126.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur80f"]
+atlas = ExtResource("2_1m3yo")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2eubs"]
+atlas = ExtResource("2_1m3yo")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qw4c"]
+atlas = ExtResource("2_1m3yo")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax0eo"]
+atlas = ExtResource("2_1m3yo")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nym6"]
+atlas = ExtResource("2_1m3yo")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui3ub"]
+atlas = ExtResource("2_1m3yo")
+region = Rect2(32, 32, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_myg0s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur80f")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur80f")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_2eubs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qw4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ax0eo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nym6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ui3ub")
+}],
+"loop": false,
+"name": &"opening",
+"speed": 10.0
+}]
+
+[node name="Checkpoint" type="Node2D"]
+script = ExtResource("1_2tnqm")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_n10sr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_myg0s")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"should_round_fps": true,
+"slice": "",
+"source": "res://assets/flag.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "f74486453bc7cb142e3b4dd93ae53a08"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
