@@ -286,9 +286,7 @@ parameters/walk/TimeScale/scale = 0.4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-7, -52)
-position_smoothing_enabled = true
 position_smoothing_speed = 10.0
-rotation_smoothing_enabled = true
 rotation_smoothing_speed = 10.0
 
 [node name="dash" type="Timer" parent="."]

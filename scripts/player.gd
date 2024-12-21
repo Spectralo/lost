@@ -66,7 +66,10 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SLIDE_DECELERATION * delta)
 		else:
 			velocity.x = move_toward(velocity.x, 0, ACCELERATION * delta)
-
+	
+	if Global.inDialogue:
+		velocity = Vector2.ZERO
+	
 	move_and_slide()
 
 func update_animations_params():

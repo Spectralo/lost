@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=4 uid="uid://b3wr0cxjl6yq7"]
+[gd_scene load_steps=27 format=3 uid="uid://b3wr0cxjl6yq7"]
 
 [ext_resource type="Texture2D" uid="uid://byoggsllkga1c" path="res://scenes/select.png" id="2_4xdmx"]
 [ext_resource type="Texture2D" uid="uid://cj5ugco5pmsul" path="res://assets/spritesheet.png" id="4_6ieu5"]
 [ext_resource type="Texture2D" uid="uid://c6jc4oulw5y4q" path="res://scenes/settings.png" id="4_wdf5d"]
 [ext_resource type="Texture2D" uid="uid://p3v4yqyld0k0" path="res://scenes/button.png" id="5_5taxw"]
 [ext_resource type="Theme" uid="uid://dl1c4tyiabych" path="res://assets/theme/textnormal.tres" id="5_xmru2"]
+[ext_resource type="Texture2D" uid="uid://bx7judkbn2dg7" path="res://assets/logo.png" id="7_3bodk"]
 
 [sub_resource type="GDScript" id="GDScript_no326"]
 script/source = "extends Control
@@ -61,7 +62,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Path2D/SelectorFollower:progress_ratio")
+tracks/1/path = NodePath("Buttons/Path2D/SelectorFollower:progress_ratio")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -101,7 +102,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Path2D/SelectorFollower/Selector:frame")
+tracks/2/path = NodePath("Buttons/Path2D/SelectorFollower/Selector:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = false
 tracks/2/keys = {
@@ -145,7 +146,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/SelectorFollower:progress_ratio")
+tracks/0/path = NodePath("Buttons/Path2D/SelectorFollower:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -161,7 +162,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/SelectorFollower:progress_ratio")
+tracks/0/path = NodePath("Buttons/Path2D/SelectorFollower:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -177,7 +178,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/SelectorFollower:progress_ratio")
+tracks/0/path = NodePath("Buttons/Path2D/SelectorFollower:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -193,7 +194,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/SelectorFollower:progress_ratio")
+tracks/0/path = NodePath("Buttons/Path2D/SelectorFollower:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -209,7 +210,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/SelectorFollower:progress_ratio")
+tracks/0/path = NodePath("Buttons/Path2D/SelectorFollower:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -230,6 +231,12 @@ _data = {
 "quit_to_settings": SubResource("Animation_5ryau"),
 "settings_to_quit": SubResource("Animation_8t1mu")
 }
+
+[sub_resource type="Curve2D" id="Curve2D_66k1x"]
+_data = {
+"points": PackedVector2Array(192.871, 20.5729, -192.871, -20.5729, 707, 132, -0.495908, -78.2323, 0.495908, 78.2323, 476, 185, -1.01637, -14.7374, 1.01637, 14.7374, 477, 293, -10.1637, -3.04912, 10.1637, 3.04912, 498, 322, 0, 0, 0, 0, 541, 320)
+}
+point_count = 5
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_7bj8v"]
 tile_data = PackedInt32Array(0, 327680, 6, 65536, 327680, 7, 1, 393216, 6, 65537, 393216, 7, 2, 458752, 6, 65538, 458752, 7)
@@ -318,12 +325,6 @@ pattern_3 = SubResource("TileMapPattern_bsm84")
 pattern_4 = SubResource("TileMapPattern_qioxx")
 pattern_5 = SubResource("TileMapPattern_l2yu2")
 
-[sub_resource type="Curve2D" id="Curve2D_66k1x"]
-_data = {
-"points": PackedVector2Array(192.871, 20.5729, -192.871, -20.5729, 707, 132, -0.495908, -78.2323, 0.495908, 78.2323, 476, 185, -1.01637, -14.7374, 1.01637, 14.7374, 477, 293, -10.1637, -3.04912, 10.1637, 3.04912, 498, 322, 0, 0, 0, 0, 541, 320)
-}
-point_count = 5
-
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -357,52 +358,19 @@ libraries = {
 "": SubResource("AnimationLibrary_gys2n")
 }
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-visible = false
-texture_filter = 1
-position = Vector2(0, -40)
-scale = Vector2(6, 6)
-tile_map_data = PackedByteArray("AAAEAAIAAAADAAAAAAAEAAMAAAADAAEAAAAFAAIAAAAEAAAAAAAFAAMAAAAEAAEAAAAEAAQAAAAAAAQAAAAFAAQAAAAAAAQAAAAGAAQAAAAAAAQAAAADAAQAAAAAAAQAAAACAAQAAAAAAAQAAAABAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAIAAAAHAAAAAAAAAAMAAAAHAAEAAAABAAMAAAAGAAMAAAA=")
-tile_set = SubResource("TileSet_xhelr")
-
-[node name="Path2D" type="Path2D" parent="."]
-position = Vector2(14, 1)
-curve = SubResource("Curve2D_66k1x")
-
-[node name="SelectorFollower" type="PathFollow2D" parent="Path2D"]
-position = Vector2(476.112, 204.788)
-progress = 294.677
-rotates = false
-
-[node name="Selector" type="Sprite2D" parent="Path2D/SelectorFollower"]
-texture_filter = 1
-scale = Vector2(3, 3)
-texture = ExtResource("2_4xdmx")
-metadata/_aseprite_wizard_interface_config_ = {
-"pending_changes": {}
-}
-metadata/_aseprite_wizard_config_ = {
-"i_mode": -1,
-"keep_anim_length": false,
-"layers": [],
-"o_ex_p": "",
-"o_folder": "",
-"o_name": "",
-"only_visible": false,
-"player": "AnimationPlayer",
-"slice": "",
-"source": "res://assets/select.aseprite"
-}
-metadata/_aseprite_wizard_source_file_hash_ = "219dc3a800f16f3cd5608c65d844acdb"
-
 [node name="Buttons" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 11
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -356.0
+offset_right = 8.0
+offset_bottom = -356.0
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
 
 [node name="Play" type="Sprite2D" parent="Buttons"]
 texture_filter = 1
@@ -499,5 +467,64 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://assets/settings.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "b37f1ccc97aea3d04dce62f794170f74"
+
+[node name="Path2D" type="Path2D" parent="Buttons"]
+position = Vector2(-629, 0)
+curve = SubResource("Curve2D_66k1x")
+
+[node name="SelectorFollower" type="PathFollow2D" parent="Buttons/Path2D"]
+position = Vector2(476.112, 204.788)
+progress = 294.677
+rotates = false
+
+[node name="Selector" type="Sprite2D" parent="Buttons/Path2D/SelectorFollower"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_4xdmx")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://assets/select.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "219dc3a800f16f3cd5608c65d844acdb"
+
+[node name="tree" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="tree"]
+texture_filter = 1
+position = Vector2(10, -213)
+scale = Vector2(8, 8)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 4, 0, 1, 0, 0, 0)
+tile_set = SubResource("TileSet_xhelr")
+
+[node name="Logo" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Logo"]
+texture_filter = 1
+position = Vector2(145, 115)
+scale = Vector2(8, 8)
+texture = ExtResource("7_3bodk")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

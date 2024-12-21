@@ -1,7 +1,17 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dl1c4tyiabych"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dl1c4tyiabych"]
 
 [ext_resource type="FontFile" uid="uid://b2at13bdkou84" path="res://assets/font/mx57.ttf" id="1_fbvyr"]
+[ext_resource type="FontFile" uid="uid://t7lgc7m5bmfb" path="res://assets/font/munro.ttf" id="2_vm74j"]
+
+[sub_resource type="FontVariation" id="FontVariation_plj1l"]
+base_font = ExtResource("2_vm74j")
 
 [resource]
 Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("1_fbvyr")
+RichTextLabel/font_sizes/normal_font_size = 20
+RichTextLabel/fonts/bold_font = ExtResource("2_vm74j")
+RichTextLabel/fonts/bold_italics_font = ExtResource("2_vm74j")
+RichTextLabel/fonts/italics_font = ExtResource("2_vm74j")
+RichTextLabel/fonts/mono_font = ExtResource("2_vm74j")
+RichTextLabel/fonts/normal_font = SubResource("FontVariation_plj1l")

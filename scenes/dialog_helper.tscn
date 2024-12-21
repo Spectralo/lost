@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd0i0lmd6pv2h"]
+
+[ext_resource type="Script" path="res://scripts/dialog_helper.gd" id="1_g0c5o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t4nod"]
+height = 143.25
+
+[node name="DialogHelper" type="Node2D"]
+script = ExtResource("1_g0c5o")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_t4nod")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6w60pyg4o1te"]
+[gd_scene load_steps=7 format=3 uid="uid://by4p15a1g5xqb"]
 
 [ext_resource type="Texture2D" uid="uid://cj5ugco5pmsul" path="res://assets/spritesheet.png" id="1_2ndr4"]
 
@@ -39,7 +39,6 @@ texture = ExtResource("1_2ndr4")
 0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:4/0 = 0
 1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-6:4/0 = 0
 7:4/0 = 0
 0:5/0 = 0
 0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -59,6 +58,10 @@ texture = ExtResource("1_2ndr4")
 5:7/0 = 0
 6:7/0 = 0
 7:7/0 = 0
+2:4/0 = 0
+2:5/0 = 0
+6:2/0 = 0
+7:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_287wf"]
 physics_layer_0/collision_layer = 1

@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/munro.ttf-abaf57a1d355732b3451f7f6cd8ec89c.fo
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=0
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
