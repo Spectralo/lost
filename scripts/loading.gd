@@ -8,6 +8,10 @@ func _ready() -> void:
 	await get_tree().create_timer(2).timeout
 	# Then play the anim
 	$AnimationPlayer.play("logo")
+	
+func _unhandled_input(event):
+	var main_menu = load("res://scenes/main_menu.tscn")
+	Transitioner.fadeTransition(main_menu)
 
 func _on_animation_player_animation_finished(anim_name):
 	var main_menu = load("res://scenes/main_menu.tscn")
