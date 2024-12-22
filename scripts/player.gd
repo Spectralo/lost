@@ -69,6 +69,9 @@ func _physics_process(delta: float) -> void:
 	
 	if Global.inDialogue:
 		velocity = Vector2.ZERO
+		
+	if velocity.y < 0:
+		jumping = true
 	
 	move_and_slide()
 

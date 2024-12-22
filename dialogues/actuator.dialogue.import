@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://cmovhinuf1dmj"
+path="res://.godot/imported/actuator.dialogue-a597bd40c3214ccb3a9f66b1207b6617.tres"
+
+[deps]
+
+source_file="res://dialogues/actuator.dialogue"
+dest_files=["res://.godot/imported/actuator.dialogue-a597bd40c3214ccb3a9f66b1207b6617.tres"]
+
+[params]
+
+defaults=true

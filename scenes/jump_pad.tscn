@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi1jj8kwrnuad"]
+
+[ext_resource type="Script" path="res://scenes/jump_pad.gd" id="1_cwnxj"]
+[ext_resource type="Texture2D" uid="uid://bph41joakd8d" path="res://scenes/jump.png" id="1_e4n1t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3oicb"]
+size = Vector2(40, 42)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ioroh"]
+radius = 20.0
+
+[node name="JumpPad" type="Node2D"]
+script = ExtResource("1_cwnxj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_e4n1t")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://assets/jump.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "81308ed2064b4143d970cb953f9756ae"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_3oicb")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 33)
+shape = SubResource("CircleShape2D_ioroh")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

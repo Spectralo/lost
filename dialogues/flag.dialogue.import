@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://diuklg0b1swj0"
+path="res://.godot/imported/flag.dialogue-3a7be69d4aadbaa9176c381f8f2c39d8.tres"
+
+[deps]
+
+source_file="res://dialogues/flag.dialogue"
+dest_files=["res://.godot/imported/flag.dialogue-3a7be69d4aadbaa9176c381f8f2c39d8.tres"]
+
+[params]
+
+defaults=true
