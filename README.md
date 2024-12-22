@@ -8,7 +8,7 @@ Thanks Nathan Hoad for the amazing Dialogue Manager plugin!
 
 ## How to install
 
-Download the latest binairy for your system or go to the itch.io page : [https://](https://spectralo.itch.io/lost)
+Download the latest binairy for your system or go to the itch.io page : https://spectralo.itch.io/lost
 
 ## Video Demo
 
